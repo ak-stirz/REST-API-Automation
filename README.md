@@ -4,7 +4,7 @@ Thanks for taking the time to check out my project. This project contains automa
 
 To eliminate any environment-related issues, I dockerized the test script, which will execute automatically when the container is running. The setup is outlined below. 
 
-#Prerequisites:
+Prerequisites:
 Avero test API running locally
 Docker installed
 
@@ -32,7 +32,7 @@ Summary-sales endpoint
 * Fort same endpoint, I see that all of the businessDays are showing an error when no date is specified (ex: "No data found. The business was closed on the given requested day"). I understand that since it's the current day, which is not finished, the data may not be available. However, I think the messaging in this situation is misleading because the restaurant may not actually be closed. I would discuss this with the dev team. The HTTP status code would also be discussed because it's 200.
 * Entering an invalid date format (ex: dd-MM-yyyy) throws a HTTP 500 error with the message "Invalid date: <dateEntered>". The error code indicated that this was an unexpected condition and this is a bug. The response should be 400 because the user input was incorrect. The error message should indicate what the correct date format is.
 
-#Possible cases that aren't automated:
+Possible cases that aren't automated:
 - Validate some of the data returned (specifically the business information).
 - Is it possible to have negative decimal amounts?
 - Are the currency codes calculated or are they static? 
