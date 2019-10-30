@@ -1,0 +1,600 @@
+---
+
+test_name: Verify /businesses endpoint
+
+stages:
+  - name: Get data from all businesses
+    request:
+      url: http://localhost:9000/v1/core/businesses
+      method: GET
+    response:
+      status_code: 200
+
+---
+
+test_name: Verify /summary-sales endpoint
+
+stages:
+  - name: Get summary sales data
+    request:
+      url: http://localhost:9000/v1/sales/summary-sales
+      method: GET
+    response:
+      status_code: 200
+
+---
+
+test_name: Verify /businesses data returned from businessId 7047
+
+stages:
+  - name: Get /businesses data from id 7047
+    request:
+      url: http://localhost:9000/v1/core/businesses/7047
+      method: GET
+    response:
+      status_code: 200
+      
+---
+
+test_name: Verify /businesses data returned from businessId 6925
+
+stages:
+  - name: Get /businesses data from id 6925
+    request:
+      url: http://localhost:9000/v1/core/businesses/6925
+      method: GET
+    response:
+      status_code: 200
+
+---
+
+test_name: Verify /businesses data returned from businessId 7048
+
+stages:
+  - name: Get /businesses data from id 7048
+    request:
+      url: http://localhost:9000/v1/core/businesses/7048
+      method: GET
+    response:
+      status_code: 200
+
+---
+
+test_name: Verify /businesses data returned from businessId 7049
+
+stages:
+  - name: Get /businesses data from id 7049
+    request:
+      url: http://localhost:9000/v1/core/businesses/7049
+      method: GET
+    response:
+      status_code: 200
+
+---
+
+test_name: Verify /businesses data returned from businessId 7050
+
+stages:
+  - name: Get /businesses data from id 7050
+    request:
+      url: http://localhost:9000/v1/core/businesses/7050
+      method: GET
+    response:
+      status_code: 200
+
+---
+
+test_name: Verify /businesses data returned from businessId 7051
+
+stages:
+  - name: Get /businesses data from id 7051
+    request:
+      url: http://localhost:9000/v1/core/businesses/7051
+      method: GET
+    response:
+      status_code: 200
+
+---
+
+test_name: Verify /businesses data returned from businessId 7052
+
+stages:
+  - name: Get /businesses data from id 7052
+    request:
+      url: http://localhost:9000/v1/core/businesses/7052
+      method: GET
+    response:
+      status_code: 200
+
+---
+
+test_name: Verify /businesses data returned from businessId 7053
+
+stages:
+  - name: Get /businesses data from id 7053
+    request:
+      url: http://localhost:9000/v1/core/businesses/7053
+      method: GET
+    response:
+      status_code: 200
+
+---
+
+test_name: Verify /businesses data returned from businessId 7054
+
+stages:
+  - name: Get /businesses data from id 7054
+    request:
+      url: http://localhost:9000/v1/core/businesses/7054
+      method: GET
+    response:
+      status_code: 200
+
+---
+
+test_name: Verify /businesses data returned from businessId 7055
+
+stages:
+  - name: Get /businesses data from id 7055
+    request:
+      url: http://localhost:9000/v1/core/businesses/7055
+      method: GET
+    response:
+      status_code: 200
+
+---
+
+test_name: Verify /businesses data returned from businessId 10006
+
+stages:
+  - name: Get /businesses data from id 10006
+    request:
+      url: http://localhost:9000/v1/core/businesses/10006
+      method: GET
+    response:
+      status_code: 200
+
+---
+
+test_name: Verify /businesses data returned from multiple businessIds
+
+stages:
+  - name: Get /businesses data from multiple businessIds
+    request:
+      url: http://localhost:9000/v1/core/businesses/7055,10006
+      method: GET
+    response:
+      status_code: 200
+
+---
+
+test_name: Verify no /businesses data returned from multiple businessIds when middle businessId is blank
+
+stages:
+  - name: Fail /businesses from multiple businessIds when middle businessId is blank
+    request:
+      url: http://localhost:9000/v1/core/businesses/7055,,7052
+      method: GET
+    response:
+      status_code: 400
+
+---
+
+test_name: Verify no /businesses data returned from multiple businessIds when middle businessId contains space 
+
+stages:
+  - name: Fail /businesses from multiple businessIds when middle businessId contains space
+    request:
+      url: http://localhost:9000/v1/core/businesses/7055, ,7052
+      method: GET
+    response:
+      status_code: 400
+
+---
+
+test_name: Verify no /businesses data returned from multiple businessIds when first businessId is blank
+
+stages:
+  - name: Fail /businesses from multiple businessIds when first businessId is blank
+    request:
+      url: http://localhost:9000/v1/core/businesses/,7055,7052
+      method: GET
+    response:
+      status_code: 400
+
+---
+
+test_name: Verify no /businesses data returned from multiple businessIds when first businessId contains space 
+
+stages:
+  - name: Fail /businesses from multiple businessIds when first businessId contains space
+    request:
+      url: http://localhost:9000/v1/core/businesses/ ,7055,7052
+      method: GET
+    response:
+      status_code: 400
+
+---
+
+test_name: Verify no /businesses data returned from multiple businessIds when last businessId is blank
+
+stages:
+  - name: Fail /businesses from multiple businessIds when last businessId is blank
+    request:
+      url: http://localhost:9000/v1/core/businesses/7055,7052,
+      method: GET
+    response:
+      status_code: 400
+
+---
+
+test_name: Verify no /businesses data returned from multiple businessIds when last businessId contains space 
+
+stages:
+  - name: Fail /businesses data from multiple businessIds when last businessId contains space
+    request:
+      url: http://localhost:9000/v1/core/businesses/7055,7052, 
+      method: GET
+    response:
+      status_code: 400
+
+---
+
+test_name: Verify /businesses error when unsupported delimiter is used
+
+stages:
+  - name: Fail /businesses case where unsupported delimiter is used
+    request:
+      url: http://localhost:9000/v1/core/businesses/7055;7052
+      method: GET
+    response:
+      status_code: 400
+
+---
+
+test_name: Verify /businesses data returned from multiple businessIds where same businessId entered twice
+
+stages:
+  - name: Get /businesses data from multiple businessIds where same businessId entered twice
+    request:
+      url: http://localhost:9000/v1/core/businesses/7055,7055
+      method: GET
+    response:
+      status_code: 200
+
+---
+
+test_name: Verify no /businesses data returned when invalid businessId entered
+
+stages:
+  - name: Fail /businesses when invalid businessId entered
+    request:
+      url: http://localhost:9000/v1/core/businesses/0000
+      method: GET
+    response:
+      status_code: 400
+
+---
+
+test_name: Verify /businesses error returned from multiple businessIds where first businessId is valid and second is invalid
+
+stages:
+  - name: Fail /businesses from multiple businessIds where first businessId is valid and second is invalid
+    request:
+      url: http://localhost:9000/v1/core/businesses/7053,0000
+      method: GET
+    response:
+      status_code: 400
+
+---
+
+test_name: Verify /businesses error returned from multiple businessIds where first businessId is invalid and second is valid
+
+stages:
+  - name: Fail /businesses from multiple businessIds where first businessId is invalid and second is valid
+    request:
+      url: http://localhost:9000/v1/core/businesses/0000,7053
+      method: GET
+    response:
+      status_code: 400
+
+---
+
+test_name: Verify /summary-sales data returned from single valid businessId but no date
+
+stages:
+  - name: Get /summary-sales data from single valid businessId but no date
+    request:
+      url: http://localhost:9000/v1/sales/summary-sales/?businessIds=7047
+      method: GET
+    response:
+      status_code: 200
+
+---
+
+test_name: Verify /summary-sales data returned from multiple valid businessIds but no date
+
+stages:
+  - name: Get /summary-sales data from multiple valid businessIds but no date
+    request:
+      url: http://localhost:9000/v1/sales/summary-sales/?businessIds=7047,7052
+      method: GET
+    response:
+      status_code: 200
+
+---
+
+test_name: Verify /summary-sales error returned from invalid businessId and no date
+
+stages:
+  - name: Fail /summary-sales when invalid businessId and no date
+    request:
+      url: http://localhost:9000/v1/sales/summary-sales/?businessIds=0000
+      method: GET
+    response:
+      status_code: 400
+ 
+---
+
+test_name: Verify /summary-sales error returned from multiple businessIds where first businessId is valid and second is invalid, no date
+
+stages:
+  - name: Fail /summary-sales when multiple businessIds where first one is valid and second one is invalid, no date
+    request:
+      url: http://localhost:9000/v1/sales/summary-sales/?businessIds=10006,0000
+      method: GET
+    response:
+      status_code: 400
+
+---
+
+test_name: Verify /summary-sales error returned from multiple businessIds when first businessId is invalid and second is valid, no date
+
+stages:
+  - name: Fail /summary-sales error when multiple businessIds where first one is invalid and second one is valid, no date
+    request:
+      url: http://localhost:9000/v1/sales/summary-sales/?businessIds=0000,10006
+      method: GET
+    response:
+      status_code: 400
+
+---
+
+test_name: Verify /summary-sales error when unsupported delimiter is used
+
+stages:
+  - name: Fail /summary-sales when unsupported delimiter is used
+    request:
+      url: http://localhost:9000/v1/sales/summary-sales/?businessIds=7055;7052
+      method: GET
+    response:
+      status_code: 400
+
+---
+
+test_name: Verify /summary-sales data returned from single valid businessId and past date
+
+stages:
+  - name: Get /summary-sales data from single valid businessId and past date
+    request:
+      url: http://localhost:9000/v1/sales/summary-sales/?businessIds=7047&businessDays=2019-05-29
+      method: GET
+    response:
+      status_code: 200
+
+---
+
+test_name: Verify /summary-sales data returned from single valid businessId and leap year date
+
+stages:
+  - name: Get /summary-sales data from single valid businessId and leap year date
+    request:
+      url: http://localhost:9000/v1/sales/summary-sales/?businessIds=7047&businessDays=2016-02-29
+      method: GET
+    response:
+      status_code: 200
+
+---
+
+test_name: Verify /summary-sales error from single valid businessId and invalid leap year date
+
+stages:
+  - name: Fail /summary-sales data from single valid businessId and invalid leap year date
+    request:
+      url: http://localhost:9000/v1/sales/summary-sales/?businessIds=7047&businessDays=2019-02-29
+      method: GET
+    response:
+      status_code: 400
+
+---
+
+test_name: Verify /summary-sales data returned from multiple valid businessIds and past date
+
+stages:
+  - name: Get /summary-sales data from multiple valid businessIds and past date
+    request:
+      url: http://localhost:9000/v1/sales/summary-sales/?businessIds=7047,7052&businessDays=2019-05-29
+      method: GET
+    response:
+      status_code: 200
+
+---
+
+test_name: Verify /summary-sales data returned from multiple valid businessIds and multiple past dates
+
+stages:
+  - name: Get /summary-sales data from multiple valid businessIds and multiple past dates
+    request:
+      url: http://localhost:9000/v1/sales/summary-sales/?businessIds=7047,7052&businessDays=2019-05-29,2019-05-30
+      method: GET
+    response:
+      status_code: 200
+
+---
+
+test_name: Verify /summary-sales error returned from invalid businessId and past date
+
+stages:
+  - name: Fail /summary-sales when invalid businessId and past date
+    request:
+      url: http://localhost:9000/v1/sales/summary-sales/?businessIds=0000&businessDays=2019-05-29
+      method: GET
+    response:
+      status_code: 400
+
+---
+
+test_name: Verify /summary-sales error returned from single valid businessId and future date
+
+stages:
+  - name: Fail /summary-sales when single valid businessId and future date
+    request:
+      url: http://localhost:9000/v1/sales/summary-sales/?businessIds=7047&businessDays=2100-10-10
+      method: GET
+    response:
+      status_code: 200
+
+---
+
+test_name: Verify /summary-sales error returned from multiple valid businessIds and future date
+
+stages:
+  - name: Fail /summary-sales when multiple valid businessIds and future date
+    request:
+      url: http://localhost:9000/v1/sales/summary-sales/?businessIds=7047,7052&businessDays=2100-10-10
+      method: GET
+    response:
+      status_code: 200
+
+---
+
+test_name: Verify /summary-sales error returned from invalid businessId and future date
+
+stages:
+  - name: Fail /summary-sales when invalid businessId and future date
+    request:
+      url: http://localhost:9000/v1/sales/summary-sales/?businessIds=0000&businessDays=2100-10-10
+      method: GET
+    response:
+      status_code: 400
+
+---
+
+test_name: Verify /summary-sales error returned from valid businessId and invalid date format
+
+stages:
+  - name: Fail /summary-sales when valid businessId and invalid date format
+    request:
+      url: http://localhost:9000/v1/sales/summary-sales/?businessIds=7051&businessDays=05-29-2019
+      method: GET
+    response:
+      status_code: 400
+
+---
+
+test_name: Verify /summary-sales error returned from valid businessId and invalid date delimiter
+
+stages:
+  - name: Fail /summary-sales when valid businessId and invalid date delimiter
+    request:
+      url: http://localhost:9000/v1/sales/summary-sales/?businessIds=7051&businessDays=2019/05/29
+      method: GET
+    response:
+      status_code: 400
+
+---
+
+test_name: Verify /summary-sales data with valid businessId, valid businessDay, and valid aspect
+
+stages:
+  - name: Get /summary-sales when valid businessId, valid businessDay, and valid aspect
+    request:
+      url: http://localhost:9000/v1/sales/summary-sales/?businessIds=7047&businessDays=2019-05-29&include=aspects.mealPeriods
+      method: GET
+    response:
+      status_code: 200
+
+---
+
+test_name: Verify /summary-sales data with multiple valid businessIds, valid businessDay, and valid aspect
+
+stages:
+  - name: Get /summary-sales when multiple valid businessIds, valid businessDay, and valid aspect
+    request:
+      url: http://localhost:9000/v1/sales/summary-sales/?businessIds=7047,6925,10006&businessDays=2019-05-29&include=aspects.mealPeriods
+      method: GET
+    response:
+      status_code: 200
+
+---
+
+test_name: Verify /summary-sales data with valid businessId, valid businessDay, and invalid aspect
+
+stages:
+  - name: Get /summary-sales when valid businessId, valid businessDay, and invalid aspect
+    request:
+      url: http://localhost:9000/v1/sales/summary-sales/?businessIds=7047&businessDays=2019-05-29&include=aspects.
+      method: GET
+    response:
+      status_code: 400
+
+---
+
+test_name: Verify /summary-sales data with multiple valid businessIds, valid businessDay, and invalid aspect
+
+stages:
+  - name: Get /summary-sales when multiple valid businessIds, valid businessDay, and invalid aspect
+    request:
+      url: http://localhost:9000/v1/sales/summary-sales/?businessIds=7047,6925,10006&businessDays=2019-05-29&include=aspects
+      method: GET
+    response:
+      status_code: 400
+
+---
+
+test_name: Verify /summary-sales data with valid businessId, multiple valid businessDay, and valid aspect
+
+stages:
+  - name: Get /summary-sales when multiple valid businessId, multiple valid businessDay, and valid aspect
+    request:
+      url: http://localhost:9000/v1/sales/summary-sales/?businessIds=7047&businessDays=2019-05-29,2019-05-30&include=aspects.mealPeriods
+      method: GET
+    response:
+      status_code: 200
+
+---
+
+test_name: Verify /summary-sales data with invalid businessId, valid businessDay, and valid aspect
+
+stages:
+  - name: Get /summary-sales when multiple invalid businessIds, valid businessDay, and valid aspect
+    request:
+      url: http://localhost:9000/v1/sales/summary-sales/?businessIds=0000&businessDays=2019-05-29&include=aspects.mealPeriods
+      method: GET
+    response:
+      status_code: 400
+
+---
+
+test_name: Verify /summary-sales data with valid businessId, invalid businessDay, and valid aspect
+
+stages:
+  - name: Get /summary-sales when multiple valid businessIds, invalid businessDay, and valid aspect
+    request:
+      url: http://localhost:9000/v1/sales/summary-sales/?businessIds=7047&businessDays=205-29-2019&include=aspects.mealPeriods
+      method: GET
+    response:
+      status_code: 400
+
+---
+
+test_name: Verify /summary-sales data with one valid businessId, one invalid BusinessId, invalid businessDay, and valid aspect
+
+stages:
+  - name: Get /summary-sales when one valid businessId, one invalid BusinessId, invalid businessDay, and valid aspect
+    request:
+      url: http://localhost:9000/v1/sales/summary-sales/?businessIds=7047,0000&businessDays=205-29-2019&include=aspects.mealPeriods
+      method: GET
+    response:
+      status_code: 400
+
